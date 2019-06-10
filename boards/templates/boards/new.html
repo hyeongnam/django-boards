@@ -3,6 +3,8 @@
 {% block body %}
     <h1>NEW</h1>
     <form action="/boards/create/" method="post">
+        <!-- post 는 DB 연동되있는 페이지 보안을 위한 용도
+        (django 에서는  csrf_token 사용) -->
         {% csrf_token %}
         <label for="title">Title</label><br />
         <input name="title" id="title" type="text" /><br />
