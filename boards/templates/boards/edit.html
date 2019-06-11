@@ -1,0 +1,18 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+    <h1>EDIT</h1>
+    <form action="/boards/{{ board.id }}/update/" method="post">
+        <!-- post 는 DB 연동되있는 페이지 보안을 위한 용도
+        (django 에서는  csrf_token 사용) -->
+        {% csrf_token %}
+        <label for="title">Title</label><br />
+        <!-- input 안에 초기값 넣고 싶을땐 value 사용 -->
+        <input name="title" id="title" type="text" value="{{ board.title }}" /><br />
+        <label for="content">Content</label><br />
+        <!-- textarea 안에 초기값 넣고 싶을땐 태그 안에 중괄호 두개하고 변수입력 -->
+        <textarea name="content" id="content">{{ board.content }}</textarea><br />
+        <input type="submit" />
+    </form>
+    <a href="/boards/">BACK</a>
+{% endblock %}

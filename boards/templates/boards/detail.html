@@ -13,4 +13,5 @@
         {% csrf_token %}
         <input class="btn btn-danger" type="submit" value="삭제하기"/>
     </form>
+    <a href="/boards/{{ board.id }}/edit/">수정하기</a>
 {% endblock %}

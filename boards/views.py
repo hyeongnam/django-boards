@@ -45,3 +45,26 @@ def delete(request, id):
     board.delete()
     # 삭제후 리스트화면으로 이동
     return redirect('/boards/')
+
+
+# 게시글 수정 페이지 렌더링
+def edit(request, id):
+    # id 값에 맞는 board 데이터 꺼낸 후 edit.html 로 넘기기
+    board = Board.objects.get(id=id)
+    context = {'board':board}
+    return render(request, 'boards/edit.html', context)
+
+
+def update(request, id):
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+    # id 값에 맞는 board 데이터를 위에서 주어진 title 과 content 에 맞게
+    # 수정한 뒤 저장하는 로직
+    # 1. Board 클래스를 통해 id 값에 맞는 데이터를 가져온다.
+    board = Board.objects.get(id=id)
+    # 2. 해당 데이터의 내용을 주어진 title, content 로 수정한다.
+    board.title = title
+    board.content = content
+    # 3. 저장한다.
+    board.save()
+    return redirect(f'/boards/{id}/')
