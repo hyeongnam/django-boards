@@ -2,7 +2,8 @@
 
 {% block body %}
     <h1>NEW</h1>
-    <form action="/boards/create/" method="post">
+<!--    <form action="/boards/create/" method="post">-->
+    <form action="{% url 'boards:new' %}" method="post">
         <!-- post 는 DB 연동되있는 페이지 보안을 위한 용도
         (django 에서는  csrf_token 사용) -->
         {% csrf_token %}
@@ -12,5 +13,5 @@
         <textarea name="content" id="content"></textarea><br />
         <input type="submit" />
     </form>
-    <a href="/boards/">BACK</a>
+    <a href="{% url 'boards:index' %}">BACK</a>
 {% endblock %}

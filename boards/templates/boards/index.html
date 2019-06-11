@@ -7,9 +7,10 @@
         <p>글 번호 : {{ board.id }}</p>
         <p>글 제목 : {{ board.title }}</p>
 <!--        <p>글 내용 : {{ board.content }}</p>-->
-        <a href="/boards/{{ board.id }}/">[상세글 보러가기]</a>
+        <a href="{% url 'boards:detail' board.id %}">[상세글 보러가기]</a>
         <hr />
     {% endfor %}
 
-    <a href="/boards/new/">새로운 글 작성하러 가기</a>
+<!--    <a href="/boards/new/">새로운 글 작성하러 가기</a>-->
+        <a href="{% url 'boards:new' %}">새로운 글 작성하러 가기</a>
 {% endblock %}
