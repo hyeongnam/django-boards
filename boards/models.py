@@ -20,3 +20,7 @@ class Comment(models.Model):
     # 어떤 게시물에 대한 코멘트 인지를 정해줘야됨
     # on_delete=models.CASCADE ==> 게시글이 지워지면 댓글도 지워짐
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f'<Board({self.board_id}): Comment({self.id} - {self.content})>'
