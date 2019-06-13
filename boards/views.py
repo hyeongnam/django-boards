@@ -22,7 +22,8 @@ def new(request):
     else:
         title = request.POST.get('title')
         content = request.POST.get('content')
-        board = Board(title=title, content=content)
+        image = request.FILES.get('image')
+        board = Board(title=title, content=content,image=image)
         board.save()
         return redirect('boards:detail', board.id)
 
@@ -81,8 +82,10 @@ def edit(request, board_id):
         # 3. POST 요청이면 사용자가보낸 데이터를 받아서 수정한 뒤
         title = request.POST.get('title')
         content = request.POST.get('content')
+        image = request.FILES.get('image')
         board.title = title
         board.content = content
+        board.image = image
         board.save()
         # detail page 로 redirect 한다.
         return redirect('boards:detail', board_id)
